@@ -5,6 +5,7 @@ extends Node2D
 # var b = "textvar"
 
 func _ready():
+	$Sprite/Position2D/Back.hide()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
