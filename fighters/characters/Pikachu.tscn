@@ -9,6 +9,10 @@
 
 script = ExtResource( 2 )
 
+[node name="Sprite" parent="." index="1"]
+
+editor/display_folded = true
+
 [node name="Front" parent="Sprite/Position2D" index="0"]
 
 texture = ExtResource( 3 )
@@ -16,5 +20,9 @@ texture = ExtResource( 3 )
 [node name="Back" parent="Sprite/Position2D" index="1"]
 
 texture = ExtResource( 4 )
+
+[node name="Info" parent="." index="2"]
+
+editor/display_folded = true
 
 
