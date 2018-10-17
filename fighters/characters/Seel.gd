@@ -1,16 +1,13 @@
-extends Node2D
+extends "res://fighters/Fighter.gd"
+
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
 
 func _ready():
-	$Sprite/Position2D/Back.hide()
+	self.set_name("Seel")
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	pass
-
-func set_name(name):
-	$Info/Name.set_text(name)
 	pass
 
 #func _process(delta):
