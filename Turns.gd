@@ -16,6 +16,10 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
+func add_to_queue(fighter):
+	queue.append(fighter)
+	pass
+
 func set_queue(new_queue):
 	queue.clear()
 	var names = []
@@ -27,6 +31,7 @@ func set_queue(new_queue):
 	if queue.size() > 0:
 		self.active_fighter = queue[0]
 	pass
+
 func _set_active_fighter(new_combatant):
 	active_fighter = new_combatant
 	active_fighter.turn = true

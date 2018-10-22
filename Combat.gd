@@ -70,11 +70,27 @@ func _ready():
 	bu2_player.set_team(2)
 	$UI/THEM/C8.add_child(bu2_player)
 
-
+	$Turns.add_to_queue(p_player)
+	$Turns.add_to_queue(be_player)
+	$Turns.add_to_queue(bu_player)
+	$Turns.add_to_queue(vu_player)
+	$Turns.add_to_queue(ch_player)
+	$Turns.add_to_queue(se_player)
+	$Turns.add_to_queue(p2_player)
+	$Turns.add_to_queue(bu2_player)
 	
+	start_game()
 	pass
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+func start_game():
+	
+	pass
+
+func _on_Next_pressed():
+	
+	pass # replace with function body
