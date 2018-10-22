@@ -5,6 +5,7 @@ var ap
 var am
 var turn = false
 var life = 100
+var team
 
 func _ready():
 	#self.set_onwait()
@@ -14,6 +15,10 @@ func _ready():
 
 func set_name(name):
 	$Info/Name.set_text(name)
+	pass
+	
+func set_team(team):
+	self.team = team
 	pass
 	
 func show_back():
@@ -38,10 +43,12 @@ func set_stats(dp, dm, ap, am):
 	pass
 	
 func set_onturn():
+	self.turn = true
 	$Info/BorderOnTurn.show()
 	$Info/Border.hide()
 	
 func set_onwait():
+	self.turn = false
 	$Info/Border.show()
 	$Info/BorderOnTurn.hide()
 	
