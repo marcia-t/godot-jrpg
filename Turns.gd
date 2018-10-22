@@ -31,3 +31,18 @@ func _set_active_combatant(new_combatant):
 	active_combatant = new_combatant
 	active_combatant.turn = true
 	emit_signal("active_combatant_changed", active_combatant)
+
+func remove(fighter):
+	var new_queue = []
+	for n in queue:
+		new_queue.append(n)
+	new_queue.remove(new_queue.find(fighter))
+	fighter.queue_free()
+	self.queue = new_queue
+	
+func get_next_in_queue():
+	var current_fighter = queue.pop_front()
+	current_fighter.turn = false
+	queue.append(current_fighter)
+	self.active_combatant = queue[0]
+	return active_combatant
