@@ -3,9 +3,11 @@ var dp
 var dm
 var ap
 var am
+var turn = false
+var life = 100
 
 func _ready():
-	#self.show_back()
+	#self.set_onwait()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
@@ -34,6 +36,14 @@ func set_stats(dp, dm, ap, am):
 	self.ap = ap
 	self.am = am
 	pass
+	
+func set_onturn():
+	$Info/BorderOnTurn.show()
+	$Info/Border.hide()
+	
+func set_onwait():
+	$Info/Border.show()
+	$Info/BorderOnTurn.hide()
 	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
