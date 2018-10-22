@@ -2,7 +2,7 @@ extends Node2D
 
 
 var queue = [] setget set_queue
-var active_combatant = null setget _set_active_combatant
+var active_fighter = null setget _set_active_fighter
 #podrían tener un equipo y ya
 const fighter = preload("res://fighters/Fighter.gd")
 
@@ -25,12 +25,12 @@ func set_queue(new_queue):
 		queue.append(node)
 		node.turn = false
 	if queue.size() > 0:
-		self.active_combatant = queue[0]
+		self.active_fighter = queue[0]
 	pass
-func _set_active_combatant(new_combatant):
-	active_combatant = new_combatant
-	active_combatant.turn = true
-	emit_signal("active_combatant_changed", active_combatant)
+func _set_active_fighter(new_combatant):
+	active_fighter = new_combatant
+	active_fighter.turn = true
+	emit_signal("active_combatant_changed", active_fighter)
 
 func remove(fighter):
 	var new_queue = []
@@ -44,5 +44,5 @@ func get_next_in_queue():
 	var current_fighter = queue.pop_front()
 	current_fighter.turn = false
 	queue.append(current_fighter)
-	self.active_combatant = queue[0]
-	return active_combatant
+	self.active_fighter = queue[0]
+	return active_fighter
