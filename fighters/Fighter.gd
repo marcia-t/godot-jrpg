@@ -6,12 +6,20 @@ var am
 var turn = false
 var life = 100
 var team
+var opponent #bool
 
 func _ready():
 	#self.set_onwait()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
+
+func set_opponent(b):
+	self.opponent = b
+	pass
+
+func is_opponent():
+	return opponent
 
 func set_name(name):
 	$Info/Name.set_text(name)

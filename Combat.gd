@@ -82,10 +82,6 @@ func _ready():
 	start_game()
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
 
 func start_game():
 	
@@ -93,5 +89,4 @@ func start_game():
 
 func _on_Next_pressed():
 	var f = $Turns.get_next_in_queue()
-	print(f.get_name())
 	pass # replace with function body
