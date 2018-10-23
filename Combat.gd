@@ -47,6 +47,7 @@ func _ready():
 	ch_player.set_stats(40,20,50,160)
 	ch_player.set_onwait()
 	ch_player.set_team(2)
+	ch_player.set_opponent()
 	$UI/THEM/C5.add_child(ch_player)
 	
 	var se_player = seel.instance()
@@ -54,6 +55,7 @@ func _ready():
 	se_player.set_stats(25,35,90,200)
 	se_player.set_onwait()
 	se_player.set_team(2)
+	se_player.set_opponent()
 	$UI/THEM/C6.add_child(se_player)
 	
 	var p2_player = pikachu.instance()
@@ -61,6 +63,7 @@ func _ready():
 	p2_player.set_stats(55,15,150,90)
 	p2_player.set_onwait()
 	p2_player.set_team(2)
+	p2_player.set_opponent()
 	$UI/THEM/C7.add_child(p2_player)
 	
 	var bu2_player = bulbasaur.instance()
@@ -68,6 +71,7 @@ func _ready():
 	bu2_player.set_stats(60,10,125,125)
 	bu2_player.set_onwait()
 	bu2_player.set_team(2)
+	bu2_player.set_opponent()
 	$UI/THEM/C8.add_child(bu2_player)
 
 	$Turns.add_to_queue(p_player)
@@ -79,12 +83,18 @@ func _ready():
 	$Turns.add_to_queue(p2_player)
 	$Turns.add_to_queue(bu2_player)
 	
-	start_game()
+	#start_game()
 	pass
 
 
 func start_game():
-	
+	var f = $Turns.get_next_in_queue()
+	if (!f.is_opponent()):
+		#definir botones y ataques
+		pass
+	else:
+		#jugar automáticamente
+		pass
 	pass
 
 func _on_Next_pressed():

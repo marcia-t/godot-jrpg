@@ -6,7 +6,7 @@ var am
 var turn = false
 var life = 100
 var team
-var opponent #bool
+var opponent = false#bool
 
 func _ready():
 	#self.set_onwait()
@@ -14,8 +14,8 @@ func _ready():
 	# Initialization here
 	pass
 
-func set_opponent(b):
-	self.opponent = b
+func set_opponent():
+	self.opponent = true
 	pass
 
 func is_opponent():
