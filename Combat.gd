@@ -23,7 +23,7 @@ func _ready():
 	var be_player = bellsprout.instance()
 	be_player.show_back()
 	be_player.set_stats(20,40, 100, 120)
-	be_player.set_onturn()
+	be_player.set_onwait()
 	be_player.set_team(1)
 	$UI/US/C2.add_child(be_player)
 	
@@ -90,10 +90,13 @@ func _ready():
 func start_game():
 	var f = $Turns.get_next_in_queue()
 	if (!f.is_opponent()):
+		var opponents = $Turns.get_opponents()
 		#definir botones y ataques
 		pass
 	else:
 		#jugar automáticamente
+		#agredir al que esté más dañado
+		#
 		pass
 	pass
 

@@ -52,3 +52,10 @@ func get_next_in_queue():
 	self.active_fighter = queue[0]
 	self.active_fighter.set_onturn()
 	return active_fighter
+	
+func get_opponents():
+	var new_queue = []
+	for n in queue:
+		if (n.is_opponent()):
+			new_queue.append(n)
+	return new_queue
