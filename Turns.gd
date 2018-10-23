@@ -35,7 +35,7 @@ func set_queue(new_queue):
 func _set_active_fighter(new_combatant):
 	active_fighter = new_combatant
 	active_fighter.turn = true
-	emit_signal("active_combatant_changed", active_fighter)
+	#emit_signal("active_combatant_changed", active_fighter)
 
 func remove(fighter):
 	var new_queue = []
@@ -47,7 +47,8 @@ func remove(fighter):
 	
 func get_next_in_queue():
 	var current_fighter = queue.pop_front()
-	current_fighter.turn = false
+	current_fighter.set_onwait()
 	queue.append(current_fighter)
 	self.active_fighter = queue[0]
+	self.active_fighter.set_onturn()
 	return active_fighter

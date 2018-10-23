@@ -92,5 +92,6 @@ func start_game():
 	pass
 
 func _on_Next_pressed():
-	
+	var f = $Turns.get_next_in_queue()
+	print(f.get_name())
 	pass # replace with function body
