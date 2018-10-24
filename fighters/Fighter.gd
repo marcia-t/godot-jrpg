@@ -14,6 +14,7 @@ func _ready():
 	# Initialization here
 	pass
 
+#manejando mejor esto, podría cambiar de bandos como un nuevo ataque
 func set_opponent():
 	self.opponent = true
 	pass

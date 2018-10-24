@@ -6,7 +6,7 @@ var charmander = preload("res://fighters/characters/Charmander.tscn")
 var seel = preload("res://fighters/characters/Seel.tscn")
 var vulpix = preload("res://fighters/characters/Vulpix.tscn")
 #Esto se podría hacer con un enum...
-var state = 'iowait'
+var state = 'onwait'
 var opp_dict = {}
 var active_fighter
 
@@ -96,18 +96,18 @@ func _process(delta):
 			if (opp_dict[opp]).is_pressed():
 				
 				print(opp.get_name())
+				#armar tablero con ataques del peleador activo
 				self.state = 'onwait'
 				pass
 		pass
 	pass
 
 func play_next():
-	var f = $Turns.get_next_in_queue()
+	active_fighter = $Turns.get_next_in_queue()
 	var button
 	opp_dict = {}
 	#Si no es un oponente...
-	if (!f.is_opponent()):
-		active_fighter = f
+	if (!active_fighter.is_opponent()):
 		state = 'select_opp'
 		var opponents = $Turns.get_opponents()
 		for op in opponents:
