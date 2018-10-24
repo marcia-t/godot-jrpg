@@ -5,9 +5,10 @@ var bulbasaur = preload("res://fighters/characters/Bulbasaur.tscn")
 var charmander = preload("res://fighters/characters/Charmander.tscn")
 var seel = preload("res://fighters/characters/Seel.tscn")
 var vulpix = preload("res://fighters/characters/Vulpix.tscn")
-
-
-
+#Esto se podría hacer con un enum...
+var state = 'iowait'
+var opp_dict = {}
+var active_fighter
 
 
 
@@ -87,15 +88,34 @@ func _ready():
 	pass
 
 
-func start_game():
+func _process(delta):
+	if (self.state == 'onwait'):
+		pass
+	if (self.state == 'select_opp'):
+		for opp in opp_dict:
+			if (opp_dict[opp]).is_pressed():
+				
+				print(opp.get_name())
+				self.state = 'onwait'
+				pass
+		pass
+	pass
+
+func play_next():
 	var f = $Turns.get_next_in_queue()
+	var button
+	opp_dict = {}
 	#Si no es un oponente...
 	if (!f.is_opponent()):
+		active_fighter = f
+		state = 'select_opp'
 		var opponents = $Turns.get_opponents()
 		for op in opponents:
-			var button1 = Button.new()
-			button1.text = op.get_name()
-			$UI/Buttons/OppSelect.add_child(button1)
+			button = Button.new()
+			button.text = op.get_name()
+			$UI/Buttons/OppSelect.add_child(button)
+			opp_dict[op] = button
+			
 		$UI/Buttons/OppSelect.show()
 		#$UI/Buttons/OppSelect.get_ch
 		
@@ -107,6 +127,30 @@ func start_game():
 		#
 		pass
 	pass
+
+func start_game():
+	self.play_next()
+	pass
+#	var f = $Turns.get_next_in_queue()
+#	var button
+#	#Si no es un oponente...
+#	if (!f.is_opponent()):
+#		var opponents = $Turns.get_opponents()
+#		for op in opponents:
+#			button = Button.new()
+#			button.text = op.get_name()
+#			$UI/Buttons/OppSelect.add_child(button)
+#		$UI/Buttons/OppSelect.show()
+#		#$UI/Buttons/OppSelect.get_ch
+#
+#		#definir botones y ataques
+#		pass
+#	else:
+#		#jugar automáticamente
+#		#agredir al que esté más dañado
+#		#
+#		pass
+#	pass
 
 func _on_Next_pressed():
 	var f = $Turns.get_next_in_queue()
