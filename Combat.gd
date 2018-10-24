@@ -83,14 +83,22 @@ func _ready():
 	$Turns.add_to_queue(p2_player)
 	$Turns.add_to_queue(bu2_player)
 	
-	#start_game()
+	start_game()
 	pass
 
 
 func start_game():
 	var f = $Turns.get_next_in_queue()
+	#Si no es un oponente...
 	if (!f.is_opponent()):
 		var opponents = $Turns.get_opponents()
+		for op in opponents:
+			var button1 = Button.new()
+			button1.text = op.get_name()
+			$UI/Buttons/OppSelect.add_child(button1)
+		$UI/Buttons/OppSelect.show()
+		#$UI/Buttons/OppSelect.get_ch
+		
 		#definir botones y ataques
 		pass
 	else:
