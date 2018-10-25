@@ -72,6 +72,21 @@ func unset_attacked():
 func is_dead():
 	return life <= 0
 	
+func hit(fighter):
+	pass
+
+func bewitch(fighter):
+	pass
+	
+func strong_punch(fighter):
+	pass
+	
+
+
+
+
+	
+	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.

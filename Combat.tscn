@@ -5,7 +5,7 @@
 [ext_resource path="res://Fighters.gd" type="Script" id=3]
 [ext_resource path="res://Turns.gd" type="Script" id=4]
 
-[node name="Combat" type="Node2D" index="0"]
+[node name="Combat" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -119,6 +119,7 @@ alignment = 0
 
 [node name="THEM" type="Container" parent="UI" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
