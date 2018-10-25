@@ -5,6 +5,8 @@ var ap
 var am
 var turn = false
 var life = 100
+var team
+var opponent = false#bool
 
 func _ready():
 	#self.set_onwait()
@@ -12,8 +14,20 @@ func _ready():
 	# Initialization here
 	pass
 
+#manejando mejor esto, podría cambiar de bandos como un nuevo ataque
+func set_opponent():
+	self.opponent = true
+	pass
+
+func is_opponent():
+	return opponent
+
 func set_name(name):
 	$Info/Name.set_text(name)
+	pass
+	
+func set_team(team):
+	self.team = team
 	pass
 	
 func show_back():
@@ -38,12 +52,25 @@ func set_stats(dp, dm, ap, am):
 	pass
 	
 func set_onturn():
+	self.turn = true
 	$Info/BorderOnTurn.show()
 	$Info/Border.hide()
 	
 func set_onwait():
+	self.turn = false
 	$Info/Border.show()
 	$Info/BorderOnTurn.hide()
+	
+func set_attacked():
+	$Info/BorderOnTurn.show()
+	$Info/Border.hide()
+	
+func unset_attacked():
+	$Info/Border.show()
+	$Info/BorderOnTurn.hide()
+	
+func is_dead():
+	return life <= 0
 	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
