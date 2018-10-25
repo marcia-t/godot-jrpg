@@ -25,3 +25,9 @@ func add_opp_buttons(opponents):
 	$Buttons/OppSelect.show()
 	return opp_dict
 	
+func delete_opp_buttons():
+	for i in $Buttons/OppSelect.get_children():
+		$Buttons/OppSelect.remove_child(i)
+	$Buttons/OppSelect.hide()
+	pass
+	

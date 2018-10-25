@@ -7,6 +7,7 @@ var seel = preload("res://fighters/characters/Seel.tscn")
 var vulpix = preload("res://fighters/characters/Vulpix.tscn")
 #Esto se podría hacer con un enum...
 var state = 'onwait'
+#Diccionario que guarda opponent : button
 var opp_dict = {}
 var active_fighter
 
@@ -89,16 +90,25 @@ func _ready():
 
 
 func _process(delta):
+	var selected_opp
 	if (self.state == 'onwait'):
 		pass
 	if (self.state == 'select_opp'):
 		for opp in opp_dict:
 			if (opp_dict[opp]).is_pressed():
-				
 				print(opp.get_name())
-				#armar tablero con ataques del peleador activo
-				self.state = 'onwait'
+				selected_opp = opp
+				selected_opp.set_attacked()
+				$UI.delete_opp_buttons()
+				self.state = 'select_attack'
 				pass
+		pass
+	if (self.state == 'select_attack'):
+		#armar tablero con ataques del peleador activo
+		# a selected_opp lo ataca active_fighter con elpoder
+		#elegido acá
+		#selected_opp.unset_attacked()
+		self.play_next()
 		pass
 	pass
 
@@ -110,13 +120,8 @@ func play_next():
 		state = 'select_opp'
 		var opponents = $Turns.get_opponents()
 		opp_dict = $UI.add_opp_buttons(opponents)
-		
-		#ojo: destruir botones
-#		
-		
-		#definir botones y ataques
 		pass
-	else:
+	else: #Si es un oponente...
 		#jugar automáticamente
 		#agredir al que esté más dañado
 		#
@@ -126,7 +131,7 @@ func play_next():
 func start_game():
 	self.play_next()
 	pass
-
-func _on_Next_pressed():
-	var f = $Turns.get_next_in_queue()
-	pass # replace with function body
+#
+#func _on_Next_pressed():
+#	var f = $Turns.get_next_in_queue()
+#	pass # replace with function body

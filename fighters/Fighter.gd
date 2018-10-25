@@ -61,6 +61,17 @@ func set_onwait():
 	$Info/Border.show()
 	$Info/BorderOnTurn.hide()
 	
+func set_attacked():
+	$Info/BorderOnTurn.show()
+	$Info/Border.hide()
+	
+func unset_attacked():
+	$Info/Border.show()
+	$Info/BorderOnTurn.hide()
+	
+func is_dead():
+	return life <= 0
+	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
