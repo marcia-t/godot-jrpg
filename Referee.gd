@@ -11,6 +11,7 @@ func _ready():
 	
 
 func hit (from_fighter, to_fighter):
+	var tf_life = to_fighter.get_life()
 	pass
 
 func bewitch(from_fighter, to_fighter):

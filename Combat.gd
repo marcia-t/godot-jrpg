@@ -10,7 +10,7 @@ var state = 'onwait'
 #Diccionario que guarda opponent : button
 var opp_dict = {}
 var active_fighter
-
+var selected_opp
 
 
 func _ready():
@@ -90,8 +90,9 @@ func _ready():
 
 
 func _process(delta):
-	var selected_opp
+	
 	if (self.state == 'onwait'):
+		self.play_next()
 		pass
 	if (self.state == 'select_opp'):
 		for opp in opp_dict:
@@ -104,11 +105,29 @@ func _process(delta):
 				pass
 		pass
 	if (self.state == 'select_attack'):
-		#armar tablero con ataques del peleador activo
-		# a selected_opp lo ataca active_fighter con elpoder
-		#elegido acá
-		#selected_opp.unset_attacked()
-		#self.play_next()
+		$UI.add_attack_buttons()
+		self.state = 'waiting_for_attack'
+		pass
+	if (self.state == 'waiting_for_attack'):
+		for n in $UI/Buttons/AttSelect.get_children():
+			if (n.is_pressed()):
+				if (n.get_text() == 'Hit'):
+					print('hit')
+					$Referee.hit(active_fighter, selected_opp)
+					pass
+				if (n.get_text() == 'Bewitch'):
+					print('wt')
+					$Referee.bewitch(active_fighter, selected_opp)
+					pass
+				if (n.get_text() == 'Strong attack'):
+					print ('strong')
+					$Referee.strong_punch(active_fighter, selected_opp)
+					pass
+				$UI.delete_attack_buttons()
+				selected_opp.unset_attacked()
+				self.state = 'onwait'
+				pass
+			pass
 		pass
 	pass
 
@@ -123,7 +142,7 @@ func play_next():
 		pass
 	else: #Si es un oponente...
 		#jugar automáticamente
-		#agredir al que esté más dañado
+		#agredir al que esté más dañado o aleatoriamente
 		#
 		pass
 	pass
@@ -131,7 +150,3 @@ func play_next():
 func start_game():
 	self.play_next()
 	pass
-#
-#func _on_Next_pressed():
-#	var f = $Turns.get_next_in_queue()
-#	pass # replace with function body

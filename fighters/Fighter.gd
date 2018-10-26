@@ -44,6 +44,26 @@ func show_front():
 	$Sprite/Position2D/Front.show()
 	pass
 	
+func set_dp (dp):
+	$Info/Stats/Defense/Physic.set_text(String(dp))
+	self.dp = dp
+	pass
+	
+func set_dm (dm):
+	$Info/Stats/Defense/Magic.set_text(String (dm))
+	self.dm = dm
+	pass
+
+func set_ap (ap):
+	$Info/Stats/Attack/Physic.set_text(String (ap))
+	self.ap = ap
+	pass
+
+func set_am (am):
+	$Info/Stats/Attack/Magic.set_text(String (am))
+	self.am = am
+	pass
+
 func set_stats(dp, dm, ap, am):
 	$Info/Stats/Defense/Physic.set_text(String(dp))
 	$Info/Stats/Defense/Magic.set_text(String (dm))
@@ -76,7 +96,11 @@ func unset_attacked():
 func is_dead():
 	return life <= 0
 	
+func get_life():
+	return life
 
+func set_life(life):
+	self.life = life
 
 	
 func get_special_attack1_name():
