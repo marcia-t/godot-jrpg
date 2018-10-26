@@ -6,7 +6,8 @@ var am
 var turn = false
 var life = 100
 var team
-var opponent = false#bool
+var opponent = false #bool
+var special_attack1_name
 
 func _ready():
 	#self.set_onwait()
@@ -26,6 +27,9 @@ func set_name(name):
 	$Info/Name.set_text(name)
 	pass
 	
+func set_special_attack1_name(name):
+	pass
+
 func set_team(team):
 	self.team = team
 	pass
@@ -72,13 +76,10 @@ func unset_attacked():
 func is_dead():
 	return life <= 0
 	
-func hit(fighter):
-	pass
 
-func bewitch(fighter):
-	pass
+
 	
-func strong_punch(fighter):
+func get_special_attack1_name():
 	pass
 	
 

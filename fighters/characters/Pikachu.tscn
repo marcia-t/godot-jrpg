@@ -17,8 +17,4 @@ texture = ExtResource( 3 )
 
 texture = ExtResource( 4 )
 
-[node name="Info" parent="." index="2"]
-
-editor/display_folded = true
-
 

@@ -108,7 +108,7 @@ func _process(delta):
 		# a selected_opp lo ataca active_fighter con elpoder
 		#elegido acá
 		#selected_opp.unset_attacked()
-		self.play_next()
+		#self.play_next()
 		pass
 	pass
 
