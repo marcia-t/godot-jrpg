@@ -136,7 +136,19 @@ func play_next():
 		var opponents = $Turns.get_opponents()
 		opp_dict = $UI.add_opp_buttons(opponents)
 		pass
-	else: #Si es un oponente...
+	else:
+		#Si es un oponente...
+		
+		var getting_attacked = $Turns.get_random_player()
+		var at = rand_range(0, 100)
+		if (at <= 33):
+			$Referee.hit(active_fighter, getting_attacked)
+		if (at > 33 && at < 66):
+			$Referee.bewitch(active_fighter, getting_attacked)
+		if (at >= 66):
+			$Referee.strong_punch(active_fighter, getting_attacked)
+			
+		self.state = 'onwait'
 		#jugar automáticamente
 		#agredir al que esté más dañado o aleatoriamente
 		#

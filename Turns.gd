@@ -60,3 +60,20 @@ func get_opponents():
 		if (n.is_opponent() && !n.is_dead()):
 			new_queue.append(n)
 	return new_queue
+	
+func get_random_player():
+	var team =[]
+	for n in queue:
+		if (!n.is_opponent()):
+			team.append(n)
+	team = shuffleList(team)
+	return team[0]
+	
+func shuffleList(list):
+    var shuffledList = [] 
+    var indexList = range(list.size())
+    for i in range(list.size()):
+        var x = randi()%indexList.size()
+        shuffledList.append(list[indexList[x]])
+        indexList.remove(x)
+    return shuffledList
