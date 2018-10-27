@@ -48,7 +48,8 @@ func remove(fighter):
 func get_next_in_queue():
 	var current_fighter = queue.pop_front()
 	current_fighter.set_onwait()
-	queue.append(current_fighter)
+	if (!current_fighter.is_dead()):
+		queue.append(current_fighter)
 	self.active_fighter = queue[0]
 	self.active_fighter.set_onturn()
 	return active_fighter
@@ -56,6 +57,6 @@ func get_next_in_queue():
 func get_opponents():
 	var new_queue = []
 	for n in queue:
-		if (n.is_opponent()):
+		if (n.is_opponent() && !n.is_dead()):
 			new_queue.append(n)
 	return new_queue

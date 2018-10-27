@@ -97,7 +97,6 @@ func _process(delta):
 	if (self.state == 'select_opp'):
 		for opp in opp_dict:
 			if (opp_dict[opp]).is_pressed():
-				print(opp.get_name())
 				selected_opp = opp
 				selected_opp.set_attacked()
 				$UI.delete_opp_buttons()
@@ -112,15 +111,12 @@ func _process(delta):
 		for n in $UI/Buttons/AttSelect.get_children():
 			if (n.is_pressed()):
 				if (n.get_text() == 'Hit'):
-					print('hit')
 					$Referee.hit(active_fighter, selected_opp)
 					pass
 				if (n.get_text() == 'Bewitch'):
-					print('wt')
 					$Referee.bewitch(active_fighter, selected_opp)
 					pass
 				if (n.get_text() == 'Strong attack'):
-					print ('strong')
 					$Referee.strong_punch(active_fighter, selected_opp)
 					pass
 				$UI.delete_attack_buttons()

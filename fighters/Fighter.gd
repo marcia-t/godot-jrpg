@@ -8,8 +8,10 @@ var life = 100
 var team
 var opponent = false #bool
 var special_attack1_name
+var p_name
 
 func _ready():
+	$Info/LIFE.set_text(String(life))
 	#self.set_onwait()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -24,8 +26,12 @@ func is_opponent():
 	return opponent
 
 func set_name(name):
+	self.p_name=name
 	$Info/Name.set_text(name)
 	pass
+
+func get_name():
+	return self.p_name
 	
 func set_special_attack1_name(name):
 	pass
@@ -43,25 +49,53 @@ func show_front():
 	$Sprite/Position2D/Back.hide()
 	$Sprite/Position2D/Front.show()
 	pass
-	
+
+func get_dp():
+	return self.dp
+
+func get_dm():
+	return self.dm
+
+func get_ap():
+	return self.ap
+
+func get_am():
+	return self.am
+
 func set_dp (dp):
-	$Info/Stats/Defense/Physic.set_text(String(dp))
-	self.dp = dp
+	if (dp<1):
+		$Info/Stats/Defense/Physic.set_text(String(1))
+		self.dp = 1
+	else:
+		$Info/Stats/Defense/Physic.set_text(String(dp))
+		self.dp = dp
 	pass
 	
 func set_dm (dm):
-	$Info/Stats/Defense/Magic.set_text(String (dm))
-	self.dm = dm
+	if (dm<1):
+		$Info/Stats/Defense/Magic.set_text(String (1))
+		self.dm = 1
+	else:
+		$Info/Stats/Defense/Magic.set_text(String (dm))
+		self.dm = dm
 	pass
 
 func set_ap (ap):
-	$Info/Stats/Attack/Physic.set_text(String (ap))
-	self.ap = ap
+	if (ap<1):
+		$Info/Stats/Attack/Physic.set_text(String (1))
+		self.ap = 1
+	else:
+		$Info/Stats/Attack/Physic.set_text(String (ap))
+		self.ap = ap
 	pass
 
 func set_am (am):
-	$Info/Stats/Attack/Magic.set_text(String (am))
-	self.am = am
+	if (am<1):
+		$Info/Stats/Attack/Magic.set_text(String (1))
+		self.am = 1
+	else:
+		$Info/Stats/Attack/Magic.set_text(String (am))
+		self.am = am
 	pass
 
 func set_stats(dp, dm, ap, am):
@@ -100,14 +134,30 @@ func get_life():
 	return life
 
 func set_life(life):
-	self.life = life
-
+	if (life<=0):
+		self.life = 0
+		self.die()
+	else:
+		self.life = life
+	$Info/LIFE.set_text(String(self.life))
 	
 func get_special_attack1_name():
 	pass
 	
 
-
+func die():
+	self.life = 0
+	$Info/BorderDeath.show()
+	$Info/BorderOnTurn.hide()
+	$Info/Border.hide()
+	$Info/LIFE.set_text(String(self.get_life()))
+	if (!is_opponent()):
+		$Sprite/Position2D/Back.hide()
+		$Sprite/Position2D/DeathBack.show()
+	else:
+		$Sprite/Position2D/Front.hide()
+		$Sprite/Position2D/DeathFront.show()
+	
 
 
 	
