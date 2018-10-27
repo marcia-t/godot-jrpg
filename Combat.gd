@@ -92,6 +92,9 @@ func _ready():
 func _process(delta):
 	
 	if (self.state == 'onwait'):
+		if ($Turns.game_ended()):
+			print("fin del juego")
+			self.state = 'ended'
 		self.play_next()
 		pass
 	if (self.state == 'select_opp'):
@@ -125,6 +128,8 @@ func _process(delta):
 				pass
 			pass
 		pass
+	if (self.state=='ended'):
+		print("el juego ha terminado")
 	pass
 
 func play_next():
@@ -140,12 +145,16 @@ func play_next():
 		#Si es un oponente...
 		
 		var getting_attacked = $Turns.get_random_player()
+		randomize()
 		var at = rand_range(0, 100)
 		if (at <= 33):
+			#print(active_fighter.get_name() + " ataca con hit a: " +getting_attacked.get_name())
 			$Referee.hit(active_fighter, getting_attacked)
 		if (at > 33 && at < 66):
+			#print(active_fighter.get_name() + " ataca con witch a: " +getting_attacked.get_name())
 			$Referee.bewitch(active_fighter, getting_attacked)
 		if (at >= 66):
+			#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
 			$Referee.strong_punch(active_fighter, getting_attacked)
 			
 		self.state = 'onwait'

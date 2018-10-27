@@ -133,12 +133,12 @@ func is_dead():
 func get_life():
 	return life
 
-func set_life(life):
-	if (life<=0):
+func set_life(l):
+	if (l<=0):
 		self.life = 0
 		self.die()
 	else:
-		self.life = life
+		self.life = l
 	$Info/LIFE.set_text(String(self.life))
 	
 func get_special_attack1_name():
@@ -150,7 +150,7 @@ func die():
 	$Info/BorderDeath.show()
 	$Info/BorderOnTurn.hide()
 	$Info/Border.hide()
-	$Info/LIFE.set_text(String(self.get_life()))
+	
 	if (!is_opponent()):
 		$Sprite/Position2D/Back.hide()
 		$Sprite/Position2D/DeathBack.show()
@@ -158,6 +158,7 @@ func die():
 		$Sprite/Position2D/Front.hide()
 		$Sprite/Position2D/DeathFront.show()
 	
+	$Info/LIFE.set_text(String(self.life))
 
 
 	

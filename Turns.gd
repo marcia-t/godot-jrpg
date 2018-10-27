@@ -66,14 +66,27 @@ func get_random_player():
 	for n in queue:
 		if (!n.is_opponent()):
 			team.append(n)
-	team = shuffleList(team)
-	return team[0]
+	var steam = shuffleList(team)
+	return steam[0]
 	
 func shuffleList(list):
-    var shuffledList = [] 
+    var shuffledList = []
     var indexList = range(list.size())
+    randomize()
     for i in range(list.size()):
         var x = randi()%indexList.size()
         shuffledList.append(list[indexList[x]])
         indexList.remove(x)
     return shuffledList
+
+func game_ended():
+	var them = 0
+	var us = 0
+	for n in queue:
+		if (n.is_opponent()):
+			them += 1
+		if (!n.is_opponent()):
+			us += 1
+	print("us: "+String(us))
+	print("them: "+String(them))
+	return (them == 0 || us == 0)
