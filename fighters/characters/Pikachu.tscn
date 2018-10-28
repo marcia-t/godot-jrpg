@@ -1,17 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fighters/Fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fighters/characters/Pikachu.gd" type="Script" id=2]
 [ext_resource path="res://assets/img/fronts/pikachu-f.png" type="Texture" id=3]
 [ext_resource path="res://assets/img/backs/pikachu-f.png" type="Texture" id=4]
+[ext_resource path="res://assets/img/fronts/pikachu-f-bw.png" type="Texture" id=5]
+[ext_resource path="res://assets/img/backs/pikachu-f-bw.png" type="Texture" id=6]
 
 [node name="Pikachu" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-
-[node name="Sprite" parent="." index="1"]
-
-editor/display_folded = false
 
 [node name="Front" parent="Sprite/Position2D" index="0"]
 
@@ -21,8 +19,12 @@ texture = ExtResource( 3 )
 
 texture = ExtResource( 4 )
 
-[node name="Info" parent="." index="2"]
+[node name="DeathFront" parent="Sprite/Position2D" index="2"]
 
-editor/display_folded = true
+texture = ExtResource( 5 )
+
+[node name="DeathBack" parent="Sprite/Position2D" index="3"]
+
+texture = ExtResource( 6 )
 
 
