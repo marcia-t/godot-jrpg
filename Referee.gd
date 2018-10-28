@@ -1,8 +1,11 @@
 extends Node2D
-
+var UI = preload("res://UI.tscn")
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+
+var stateLabel
+
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -63,6 +66,7 @@ func bewitch(from_fighter, to_fighter):
 		return
 	if(percentages['sudden_death_to'] < 3):
 		to_fighter.set_life(0)
+		
 		return
 	var substract_from_life = ((0.075*tf_life)*(0.04*ff_am))-(0.05*tf_dm)
 	var substract_from_dm = (0.04*ff_am)*(0.025*tf_dm)
