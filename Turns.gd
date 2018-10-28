@@ -35,7 +35,6 @@ func set_queue(new_queue):
 func _set_active_fighter(new_combatant):
 	active_fighter = new_combatant
 	active_fighter.turn = true
-	#emit_signal("active_combatant_changed", active_fighter)
 
 func remove(fighter):
 	var new_queue = []
@@ -48,7 +47,8 @@ func remove(fighter):
 func get_next_in_queue():
 	var current_fighter = queue.pop_front()
 	current_fighter.set_onwait()
-	queue.append(current_fighter)
+	if (!current_fighter.is_dead()):
+		queue.append(current_fighter)
 	self.active_fighter = queue[0]
 	self.active_fighter.set_onturn()
 	return active_fighter
@@ -56,6 +56,34 @@ func get_next_in_queue():
 func get_opponents():
 	var new_queue = []
 	for n in queue:
-		if (n.is_opponent()):
+		if (n.is_opponent() && !n.is_dead()):
 			new_queue.append(n)
 	return new_queue
+	
+func get_random_player():
+	var team =[]
+	for n in queue:
+		if (!n.is_opponent()):
+			team.append(n)
+	var steam = shuffleList(team)
+	return steam[0]
+	
+func shuffleList(list):
+    var shuffledList = []
+    var indexList = range(list.size())
+    randomize()
+    for i in range(list.size()):
+        var x = randi()%indexList.size()
+        shuffledList.append(list[indexList[x]])
+        indexList.remove(x)
+    return shuffledList
+
+func game_ended():
+	var them = 0
+	var us = 0
+	for n in queue:
+		if (n.is_opponent()):
+			them += 1
+		if (!n.is_opponent()):
+			us += 1
+	return (them == 0 || us == 0)

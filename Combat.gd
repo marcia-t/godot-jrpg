@@ -10,7 +10,7 @@ var state = 'onwait'
 #Diccionario que guarda opponent : button
 var opp_dict = {}
 var active_fighter
-
+var selected_opp
 
 
 func _ready():
@@ -90,13 +90,13 @@ func _ready():
 
 
 func _process(delta):
-	var selected_opp
+	
 	if (self.state == 'onwait'):
+		self.play_next()
 		pass
 	if (self.state == 'select_opp'):
 		for opp in opp_dict:
 			if (opp_dict[opp]).is_pressed():
-				print(opp.get_name())
 				selected_opp = opp
 				selected_opp.set_attacked()
 				$UI.delete_opp_buttons()
@@ -104,34 +104,69 @@ func _process(delta):
 				pass
 		pass
 	if (self.state == 'select_attack'):
-		#armar tablero con ataques del peleador activo
-		# a selected_opp lo ataca active_fighter con elpoder
-		#elegido acá
-		#selected_opp.unset_attacked()
-		self.play_next()
+		$UI.add_attack_buttons()
+		self.state = 'waiting_for_attack'
+		pass
+	if (self.state == 'waiting_for_attack'):
+		for n in $UI/Buttons/AttSelect.get_children():
+			if (n.is_pressed()):
+				if (n.get_text() == 'Hit'):
+					$Referee.hit(active_fighter, selected_opp)
+					pass
+				if (n.get_text() == 'Bewitch'):
+					$Referee.bewitch(active_fighter, selected_opp)
+					pass
+				if (n.get_text() == 'Strong attack'):
+					$Referee.strong_punch(active_fighter, selected_opp)
+					pass
+				$UI.delete_attack_buttons()
+				selected_opp.unset_attacked()
+				self.state = 'onwait'
+				pass
+			pass
+		pass
+	if (self.state=='ended'):
+		#print("el juego ha terminado")
 		pass
 	pass
 
 func play_next():
+
 	active_fighter = $Turns.get_next_in_queue()
-	opp_dict = {}
-	#Si no es un oponente...
-	if (!active_fighter.is_opponent()):
-		state = 'select_opp'
-		var opponents = $Turns.get_opponents()
-		opp_dict = $UI.add_opp_buttons(opponents)
-		pass
-	else: #Si es un oponente...
-		#jugar automáticamente
-		#agredir al que esté más dañado
-		#
-		pass
+	if ($Turns.game_ended()):
+		print("fin del juego")
+		self.state = 'ended'
+	else:
+		opp_dict = {}
+		#Si no es un oponente...
+		if (!active_fighter.is_opponent()):
+			state = 'select_opp'
+			var opponents = $Turns.get_opponents()
+			opp_dict = $UI.add_opp_buttons(opponents)
+			pass
+		else:
+			#Si es un oponente...
+			
+			var getting_attacked = $Turns.get_random_player()
+			randomize()
+			var at = rand_range(0, 100)
+			if (at <= 33):
+				#print(active_fighter.get_name() + " ataca con hit a: " +getting_attacked.get_name())
+				$Referee.hit(active_fighter, getting_attacked)
+			if (at > 33 && at < 66):
+				#print(active_fighter.get_name() + " ataca con witch a: " +getting_attacked.get_name())
+				$Referee.bewitch(active_fighter, getting_attacked)
+			if (at >= 66):
+				#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
+				$Referee.strong_punch(active_fighter, getting_attacked)
+				
+			self.state = 'onwait'
+			#jugar automáticamente
+			#agredir al que esté más dañado o aleatoriamente
+			#
+			pass
 	pass
 
 func start_game():
 	self.play_next()
 	pass
-#
-#func _on_Next_pressed():
-#	var f = $Turns.get_next_in_queue()
-#	pass # replace with function body
