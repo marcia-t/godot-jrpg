@@ -35,7 +35,6 @@ func set_queue(new_queue):
 func _set_active_fighter(new_combatant):
 	active_fighter = new_combatant
 	active_fighter.turn = true
-	#emit_signal("active_combatant_changed", active_fighter)
 
 func remove(fighter):
 	var new_queue = []
@@ -87,6 +86,4 @@ func game_ended():
 			them += 1
 		if (!n.is_opponent()):
 			us += 1
-	print("us: "+String(us))
-	print("them: "+String(them))
 	return (them == 0 || us == 0)

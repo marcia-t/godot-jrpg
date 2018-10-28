@@ -134,7 +134,7 @@ func get_life():
 	return life
 
 func set_life(l):
-	if (l<=0):
+	if (l<=1):
 		self.life = 0
 		self.die()
 	else:

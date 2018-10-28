@@ -33,13 +33,13 @@ func hit (from_fighter, to_fighter):
 	var percentages = self.generate_randoms()
 	if(percentages['fail'] < 5):
 		#no hago nada, pues falló el ataque
-		pass
+		return
 	if(percentages['sudden_death_from'] < 0.5):
 		from_fighter.set_life(0)
-		pass
+		return
 	if(percentages['sudden_death_to'] < 1):
 		to_fighter.set_life(0)
-		pass
+		return
 	var substract_from_life = ((0.1*tf_life)*(0.03*ff_ap))-(0.05*tf_dp)
 	var substract_from_ap = (0.05*tf_dp)*(0.025*ff_ap)
 	if(percentages['critic']<70):
@@ -57,13 +57,13 @@ func bewitch(from_fighter, to_fighter):
 	var percentages = self.generate_randoms()
 	if(percentages['fail'] < 20):
 		#no hago nada, pues falló el ataque
-		pass
+		return
 	if(percentages['sudden_death_from'] < 0.025):
 		from_fighter.set_life(0)
-		pass
+		return
 	if(percentages['sudden_death_to'] < 3):
 		to_fighter.set_life(0)
-		pass
+		return
 	var substract_from_life = ((0.075*tf_life)*(0.04*ff_am))-(0.05*tf_dm)
 	var substract_from_dm = (0.04*ff_am)*(0.025*tf_dm)
 	var substract_from_am = (tf_am*0.20)
@@ -84,13 +84,13 @@ func strong_punch(from_fighter, to_fighter):
 	var percentages = self.generate_randoms()
 	if(percentages['fail'] < 50):
 		#no hago nada, pues falló el ataque
-		pass
+		return
 	if(percentages['sudden_death_from'] < 1):
 		from_fighter.set_life(0)
-		pass
+		return
 	if(percentages['sudden_death_to'] < 2):
 		to_fighter.set_life(0)
-		pass
+		return
 	var substract_from_life = (0.10*tf_life)*(0.05*ff_ap)
 	var substract_from_ap = tf_ap*0.2
 	var substract_from_dp = tf_dp*0.3

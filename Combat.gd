@@ -92,9 +92,6 @@ func _ready():
 func _process(delta):
 	
 	if (self.state == 'onwait'):
-		if ($Turns.game_ended()):
-			print("fin del juego")
-			self.state = 'ended'
 		self.play_next()
 		pass
 	if (self.state == 'select_opp'):
@@ -129,39 +126,45 @@ func _process(delta):
 			pass
 		pass
 	if (self.state=='ended'):
-		print("el juego ha terminado")
+		#print("el juego ha terminado")
+		pass
 	pass
 
 func play_next():
+
 	active_fighter = $Turns.get_next_in_queue()
-	opp_dict = {}
-	#Si no es un oponente...
-	if (!active_fighter.is_opponent()):
-		state = 'select_opp'
-		var opponents = $Turns.get_opponents()
-		opp_dict = $UI.add_opp_buttons(opponents)
-		pass
+	if ($Turns.game_ended()):
+		print("fin del juego")
+		self.state = 'ended'
 	else:
-		#Si es un oponente...
-		
-		var getting_attacked = $Turns.get_random_player()
-		randomize()
-		var at = rand_range(0, 100)
-		if (at <= 33):
-			#print(active_fighter.get_name() + " ataca con hit a: " +getting_attacked.get_name())
-			$Referee.hit(active_fighter, getting_attacked)
-		if (at > 33 && at < 66):
-			#print(active_fighter.get_name() + " ataca con witch a: " +getting_attacked.get_name())
-			$Referee.bewitch(active_fighter, getting_attacked)
-		if (at >= 66):
-			#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
-			$Referee.strong_punch(active_fighter, getting_attacked)
+		opp_dict = {}
+		#Si no es un oponente...
+		if (!active_fighter.is_opponent()):
+			state = 'select_opp'
+			var opponents = $Turns.get_opponents()
+			opp_dict = $UI.add_opp_buttons(opponents)
+			pass
+		else:
+			#Si es un oponente...
 			
-		self.state = 'onwait'
-		#jugar automáticamente
-		#agredir al que esté más dañado o aleatoriamente
-		#
-		pass
+			var getting_attacked = $Turns.get_random_player()
+			randomize()
+			var at = rand_range(0, 100)
+			if (at <= 33):
+				#print(active_fighter.get_name() + " ataca con hit a: " +getting_attacked.get_name())
+				$Referee.hit(active_fighter, getting_attacked)
+			if (at > 33 && at < 66):
+				#print(active_fighter.get_name() + " ataca con witch a: " +getting_attacked.get_name())
+				$Referee.bewitch(active_fighter, getting_attacked)
+			if (at >= 66):
+				#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
+				$Referee.strong_punch(active_fighter, getting_attacked)
+				
+			self.state = 'onwait'
+			#jugar automáticamente
+			#agredir al que esté más dañado o aleatoriamente
+			#
+			pass
 	pass
 
 func start_game():
