@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fighters/Fighter.gd" type="Script" id=1]
 [ext_resource path="res://fighters/Health.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/img/icon.png" type="Texture" id=4]
 [ext_resource path="res://assets/img/icon-turn.png" type="Texture" id=5]
 [ext_resource path="res://assets/img/icon-bw.png" type="Texture" id=6]
+[ext_resource path="res://assets/img/shadow.png" type="Texture" id=7]
 
 [node name="Fighter" type="Node2D" index="0"]
 
@@ -21,17 +22,25 @@ script = ExtResource( 3 )
 
 [node name="Front" type="Sprite" parent="Sprite/Position2D" index="0"]
 
+scale = Vector2( 1.25, 1.25 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="Back" type="Sprite" parent="Sprite/Position2D" index="1"]
 
+scale = Vector2( 1.25, 1.25 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="DeathFront" type="Sprite" parent="Sprite/Position2D" index="2"]
 
 visible = false
+scale = Vector2( 1.25, 1.25 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="DeathBack" type="Sprite" parent="Sprite/Position2D" index="3"]
 
 visible = false
+scale = Vector2( 1.25, 1.25 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Info" type="Control" parent="." index="2"]
 
@@ -61,19 +70,23 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 2.0
-margin_top = 74.0
-margin_right = 42.0
-margin_bottom = 88.0
+margin_left = -29.0
+margin_top = 72.0
+margin_right = 11.0
+margin_bottom = 86.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.0256348, 0.3125, 0.3125, 1 )
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 [node name="Stats" type="VBoxContainer" parent="Info" index="2"]
 
@@ -123,13 +136,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 0, 1, 0.0588235, 1 )
+custom_colors/font_color = Color( 0.945098, 0.458824, 0.133333, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
 
 [node name="Physic" type="Label" parent="Info/Stats/Defense" index="1"]
 
@@ -146,7 +159,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 0.0376892, 0.964844, 0.146766, 1 )
+custom_colors/font_color = Color( 0.945098, 0.458824, 0.133333, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
@@ -183,7 +196,8 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 0.321569, 0.988235, 0.945098, 1 )
+custom_colors/font_color = Color( 0.929412, 0.227451, 0.768627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -204,7 +218,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_colors/font_color = Color( 0.321569, 0.988235, 0.945098, 1 )
+custom_colors/font_color = Color( 0.929412, 0.227451, 0.768627, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
@@ -233,7 +247,7 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-percent_visible = false
+percent_visible = true
 _sections_unfolded = [ "Percent" ]
 
 [node name="BorderOnTurn" type="Sprite" parent="Info" index="4"]
@@ -253,6 +267,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="LIFE" type="Label" parent="Info" index="6"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -270,5 +285,13 @@ size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="shadow" type="Sprite" parent="." index="3"]
+
+show_behind_parent = true
+position = Vector2( -1.7473, 56.3393 )
+scale = Vector2( 1.56964, 1.22774 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 

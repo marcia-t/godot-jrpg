@@ -126,6 +126,7 @@ func _process(delta):
 			pass
 		pass
 	if (self.state=='ended'):
+		$UI/Info/GameState.text = "El juego ha terminado"
 		#print("el juego ha terminado")
 		pass
 	pass

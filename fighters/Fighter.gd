@@ -12,6 +12,7 @@ var p_name
 
 func _ready():
 	$Info/LIFE.set_text(String(life))
+	$Info/ProgressBar.value = life
 	#self.set_onwait()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -139,6 +140,7 @@ func set_life(l):
 		self.die()
 	else:
 		self.life = l
+	$Info/ProgressBar.value = self.life
 	$Info/LIFE.set_text(String(self.life))
 	
 func get_special_attack1_name():
@@ -159,7 +161,7 @@ func die():
 		$Sprite/Position2D/DeathFront.show()
 	
 	$Info/LIFE.set_text(String(self.life))
-
+	$Info/ProgressBar.value=self.life
 
 	
 	
