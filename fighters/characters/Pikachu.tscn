@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://fighters/Fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fighters/characters/Pikachu.gd" type="Script" id=2]
@@ -33,6 +33,25 @@ resource_name = "Nueva Animación"
 length = 1.0
 loop = false
 step = 0.1
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "pikachu_take_damage_back"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedBack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.4, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 2, 3, 4, 5 ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -83,12 +102,12 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 frame = 5
-playing = true
 
 [node name="AnimationPlayer" parent="Sprite" index="3"]
 
 "anims/Nueva Animación" = SubResource( 3 )
 "anims/Nueva Animación (2)" = ExtResource( 7 )
+anims/pikachu_take_damage_back = SubResource( 5 )
 anims/take_damage = SubResource( 4 )
 
 

@@ -162,6 +162,7 @@ func play_next():
 			#Si es un oponente...
 			
 			var getting_attacked = $Turns.get_random_player()
+			selected_opp = getting_attacked
 			randomize()
 			var at = rand_range(0, 100)
 			if (at <= 33):
