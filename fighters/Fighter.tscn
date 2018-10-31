@@ -40,7 +40,7 @@ _sections_unfolded = [ "Transform" ]
 
 visible = false
 scale = Vector2( 1.25, 1.25 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="AnimatedFront" type="AnimatedSprite" parent="Sprite" index="1"]
 

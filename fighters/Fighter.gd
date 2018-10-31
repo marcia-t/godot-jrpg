@@ -165,26 +165,27 @@ func show_sprite():
 		$Sprite/Position2D/Back.show()
 
 func show_anim():
-	if (self.is_opponent()):
-		$Sprite/AnimatedFront.show()
-		
-		#$Sprite/AnimatedFront.play("take_damage")
-		$Sprite/AnimationPlayer.play("take_damage")
-		if(!$Sprite/AnimationPlayer.is_playing()):
-			print("bB")
-			pass
-
-		#$Sprite/AnimatedFront.hide()
-		#$Sprite/AnimatedFront.hide()
-	else:
-		#show take_damage_me
-		pass
-		
-		
-		#$Sprite/AnimatedFront.hide()
-		#$Sprite/Position2D/Front.show()
-		#$Sprite/AnimatedFront.hide()
-		#$Sprite/Position2D/Front.show()
+	pass
+#	if (self.is_opponent()):
+#		$Sprite/AnimatedFront.show()
+#
+#		#$Sprite/AnimatedFront.play("take_damage")
+#		$Sprite/AnimationPlayer.play("take_damage")
+#		if(!$Sprite/AnimationPlayer.is_playing()):
+#			print("bB")
+#			pass
+#
+#		#$Sprite/AnimatedFront.hide()
+#		#$Sprite/AnimatedFront.hide()
+#	else:
+#		#show take_damage_me
+#		pass
+#
+#
+#		#$Sprite/AnimatedFront.hide()
+#		#$Sprite/Position2D/Front.show()
+#		#$Sprite/AnimatedFront.hide()
+#		#$Sprite/Position2D/Front.show()
 	
 func die():
 	self.life = 0
