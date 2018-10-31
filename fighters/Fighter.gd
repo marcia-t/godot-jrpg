@@ -145,8 +145,47 @@ func set_life(l):
 	
 func get_special_attack1_name():
 	pass
-	
 
+func hide_sprite():
+	if (self.is_opponent()):
+		$Sprite/Position2D/Front.hide()
+	else:
+		$Sprite/Position2D/Back.hide()
+
+func hide_anim():
+	if (self.is_opponent()):
+		$Sprite/AnimatedFront.hide()
+	else:
+		$Sprite/AnimatedBack.hide()
+
+func show_sprite():
+	if (self.is_opponent()):
+		$Sprite/Position2D/Front.show()
+	else:
+		$Sprite/Position2D/Back.show()
+
+func show_anim():
+	if (self.is_opponent()):
+		$Sprite/AnimatedFront.show()
+		
+		#$Sprite/AnimatedFront.play("take_damage")
+		$Sprite/AnimationPlayer.play("take_damage")
+		if(!$Sprite/AnimationPlayer.is_playing()):
+			print("bB")
+			pass
+
+		#$Sprite/AnimatedFront.hide()
+		#$Sprite/AnimatedFront.hide()
+	else:
+		#show take_damage_me
+		pass
+		
+		
+		#$Sprite/AnimatedFront.hide()
+		#$Sprite/Position2D/Front.show()
+		#$Sprite/AnimatedFront.hide()
+		#$Sprite/Position2D/Front.show()
+	
 func die():
 	self.life = 0
 	$Info/BorderDeath.show()

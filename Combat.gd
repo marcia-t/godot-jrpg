@@ -11,6 +11,7 @@ var state = 'onwait'
 var opp_dict = {}
 var active_fighter
 var selected_opp
+var time_elapsed = 0
 
 
 func _ready():
@@ -121,9 +122,21 @@ func _process(delta):
 					pass
 				$UI.delete_attack_buttons()
 				selected_opp.unset_attacked()
-				self.state = 'onwait'
+				
+				self.state = 'showing_anim'
 				pass
 			pass
+		pass
+	if(self.state == 'showing_anim'):
+		selected_opp.hide_sprite()
+		time_elapsed = time_elapsed + delta
+		selected_opp.show_anim()
+		if (time_elapsed > 1):
+			selected_opp.hide_anim()
+			selected_opp.show_sprite()
+			self.state = 'onwait'
+			time_elapsed = 0
+		
 		pass
 	if (self.state=='ended'):
 		$UI/Info/GameState.text = "El juego ha terminado"
@@ -161,7 +174,7 @@ func play_next():
 				#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
 				$Referee.strong_punch(active_fighter, getting_attacked)
 				
-			self.state = 'onwait'
+			self.state = 'showing_anim'
 			#jugar automáticamente
 			#agredir al que esté más dañado o aleatoriamente
 			#

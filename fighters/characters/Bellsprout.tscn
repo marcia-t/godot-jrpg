@@ -1,15 +1,37 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fighters/Fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fighters/characters/Bellsprout.gd" type="Script" id=2]
 [ext_resource path="res://assets/img/fronts/bellsprout.png" type="Texture" id=3]
-[ext_resource path="res://assets/img/backs/bellsprout.png" type="Texture" id=4]
+[ext_resource path="res://fighters/characters/bellsprout.png" type="Texture" id=4]
 [ext_resource path="res://assets/img/fronts/bellsprout-bw.png" type="Texture" id=5]
 [ext_resource path="res://assets/img/backs/bellsprout-bw.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "default",
+"speed": 2.0
+} ]
 
 [node name="Bellsprout" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+
+[node name="Position2D" parent="Sprite" index="0"]
+
+editor/display_folded = true
 
 [node name="Front" parent="Sprite/Position2D" index="0"]
 
@@ -18,7 +40,6 @@ texture = ExtResource( 3 )
 [node name="Back" parent="Sprite/Position2D" index="1"]
 
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="DeathFront" parent="Sprite/Position2D" index="2"]
 
@@ -27,5 +48,17 @@ texture = ExtResource( 5 )
 [node name="DeathBack" parent="Sprite/Position2D" index="3"]
 
 texture = ExtResource( 6 )
+
+[node name="AnimatedFront" parent="Sprite" index="1"]
+
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedBack" parent="Sprite" index="2"]
+
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 

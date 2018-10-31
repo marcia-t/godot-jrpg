@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bellsprout.png-7ccf6bbd0d35281f5f5f8a0454ab667d.stex"
+path="res://.import/bellsprout.png-fd9164f67360b865eff4da397eb051e1.stex"
 
 [deps]
 
-source_file="res://assets/img/backs/bellsprout.png"
-dest_files=[ "res://.import/bellsprout.png-7ccf6bbd0d35281f5f5f8a0454ab667d.stex" ]
+source_file="res://fighters/characters/bellsprout.png"
+dest_files=[ "res://.import/bellsprout.png-fd9164f67360b865eff4da397eb051e1.stex" ]
 
 [params]
 

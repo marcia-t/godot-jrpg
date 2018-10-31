@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pikachu-f-bw.png-d11d47ddeb5f9184075ccac5e529ee4f.stex"
+path="res://.import/pikachu-f-bw.png-e37a3af9cd482c8096c1078e67911a9f.stex"
 
 [deps]
 
-source_file="res://assets/img/fronts/pikachu-f-bw.png"
-dest_files=[ "res://.import/pikachu-f-bw.png-d11d47ddeb5f9184075ccac5e529ee4f.stex" ]
+source_file="res://pikachu-f-bw.png"
+dest_files=[ "res://.import/pikachu-f-bw.png-e37a3af9cd482c8096c1078e67911a9f.stex" ]
 
 [params]
 
