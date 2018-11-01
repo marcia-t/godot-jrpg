@@ -37,7 +37,7 @@ func _ready():
 	bu_player.set_team(1)
 	$UI/US/C3.add_child(bu_player)
 	
-	var vu_player = vulpix.instance()
+	var vu_player = bulbasaur.instance()
 	vu_player.show_back()
 	vu_player.set_stats(25,35,150,100)
 	vu_player.set_onwait()
@@ -61,7 +61,7 @@ func _ready():
 	se_player.set_opponent()
 	$UI/THEM/C6.add_child(se_player)
 	
-	var p2_player = pikachu.instance()
+	var p2_player = bulbasaur.instance()
 	p2_player.show_front()
 	p2_player.set_stats(55,15,150,90)
 	p2_player.set_onwait()
