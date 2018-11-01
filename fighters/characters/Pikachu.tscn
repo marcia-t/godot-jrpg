@@ -45,7 +45,7 @@ tracks/0/keys = {
 "values": [ 0.0, 60.5715, -18.0192, 28.5452, -11.3253, 0.0 ]
 }
 
-[node name="Pikachu" index="0" instance=ExtResource( 1 )]
+[node name="Pikachu" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
