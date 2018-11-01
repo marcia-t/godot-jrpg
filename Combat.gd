@@ -155,7 +155,7 @@ func play_next():
 			#Si es un oponente...
 			
 			var getting_attacked = $Turns.get_random_player()
-			getting_attacked.set_attacked()
+#			getting_attacked.set_attacked()
 			randomize()
 			var at = rand_range(0, 100)
 			if (at <= 33):
@@ -168,7 +168,7 @@ func play_next():
 				#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
 				$Referee.strong_punch(active_fighter, getting_attacked)
 			getting_attacked.receive_attack()
-			getting_attacked.unset_attacked()
+#			getting_attacked.unset_attacked()
 			self.state = 'onwait'
 			#jugar automáticamente
 			#agredir al que esté más dañado o aleatoriamente
