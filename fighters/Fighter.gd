@@ -163,6 +163,8 @@ func die():
 	$Info/LIFE.set_text(String(self.life))
 	$Info/ProgressBar.value=self.life
 
+func receive_attack():
+	pass
 	
 	
 #func _process(delta):

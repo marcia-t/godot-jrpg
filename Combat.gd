@@ -11,6 +11,7 @@ var state = 'onwait'
 var opp_dict = {}
 var active_fighter
 var selected_opp
+var time_elapsed = 0
 
 
 func _ready():
@@ -92,7 +93,11 @@ func _ready():
 func _process(delta):
 	
 	if (self.state == 'onwait'):
-		self.play_next()
+		if(time_elapsed > 1):
+			self.play_next()
+			time_elapsed = 0
+		else:
+			time_elapsed= time_elapsed+delta
 		pass
 	if (self.state == 'select_opp'):
 		for opp in opp_dict:
@@ -120,6 +125,7 @@ func _process(delta):
 					$Referee.strong_punch(active_fighter, selected_opp)
 					pass
 				$UI.delete_attack_buttons()
+				selected_opp.receive_attack()
 				selected_opp.unset_attacked()
 				self.state = 'onwait'
 				pass
@@ -160,7 +166,7 @@ func play_next():
 			if (at >= 66):
 				#print (active_fighter.get_name() + " ataca con strong a: " +getting_attacked.get_name())
 				$Referee.strong_punch(active_fighter, getting_attacked)
-				
+			getting_attacked.receive_attack()
 			self.state = 'onwait'
 			#jugar automáticamente
 			#agredir al que esté más dañado o aleatoriamente
