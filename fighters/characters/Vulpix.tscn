@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/img/fronts/vulpix-bw.png" type="Texture" id=5]
 [ext_resource path="res://assets/img/backs/vulpix-bw.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
 resource_name = "take_damage_back"
 length = 1.0
@@ -25,10 +25,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, -50.9138, -28.9341, 31.976, -38.2786, 36.6967, 0.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Info/Border:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.462387, 27.5183 ), Vector2( -28.3465, 26.4103 ), Vector2( 38.659, 28.4005 ), Vector2( -14.341, 27.4005 ), Vector2( 0.462387, 27.5183 ) ]
+}
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 
-resource_name = "take_damage_front"
 length = 1.0
 loop = false
 step = 0.1
@@ -67,7 +78,15 @@ texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" parent="Sprite" index="1"]
 
-anims/take_damage_back = SubResource( 2 )
-anims/take_damage_front = SubResource( 1 )
+anims/take_damage_back = SubResource( 1 )
+anims/take_damage_front = SubResource( 2 )
+
+[node name="Info" parent="." index="2"]
+
+editor/display_folded = false
+
+[node name="BorderOnTurn" parent="Info" index="4"]
+
+visible = false
 
 
