@@ -9,6 +9,7 @@ var team
 var opponent = false #bool
 var special_attack1_name
 var p_name
+var attacked = false
 
 func _ready():
 	$Info/LIFE.set_text(String(life))
@@ -163,9 +164,18 @@ func die():
 	$Info/LIFE.set_text(String(self.life))
 	$Info/ProgressBar.value=self.life
 
-	
-	
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
+func receive_attack():
+	self.attacked = true
+
+
+func _process(delta):
+	if (self.attacked):
+		if(self.is_opponent()):
+			$Sprite/AnimationPlayer.play("take_damage_front")
+		else:
+			$Sprite/AnimationPlayer.play("take_damage_back")
+#		time_elapsed = time_elapsed+delta
+#		if (time_elapsed > 1):
+		self.attacked =false
+#			time_elapsed = 0
 #	pass

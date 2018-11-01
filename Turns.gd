@@ -49,7 +49,11 @@ func get_next_in_queue():
 	current_fighter.set_onwait()
 	if (!current_fighter.is_dead()):
 		queue.append(current_fighter)
+
 	self.active_fighter = queue[0]
+	while(self.active_fighter.is_dead()):
+		queue.pop_front()
+		self.active_fighter = queue[0]
 	self.active_fighter.set_onturn()
 	return active_fighter
 	

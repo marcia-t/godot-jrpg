@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fighters/Fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fighters/characters/Bellsprout.gd" type="Script" id=2]
@@ -7,18 +7,57 @@
 [ext_resource path="res://assets/img/fronts/bellsprout-bw.png" type="Texture" id=5]
 [ext_resource path="res://assets/img/backs/bellsprout-bw.png" type="Texture" id=6]
 
+[sub_resource type="Animation" id=2]
+
+resource_name = "take_damage_back"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Back:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -24.2732, 55.8832, -31.4968, 24.2629, -23.2041, 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "take_damage_front"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Front:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -24.0063, 26.6319, -28.7921, 20.5355, -21.6452, 0.0 ]
+}
+
 [node name="Bellsprout" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
 [node name="Front" parent="Sprite/Position2D" index="0"]
 
+visible = false
 texture = ExtResource( 3 )
 
 [node name="Back" parent="Sprite/Position2D" index="1"]
 
+visible = false
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="DeathFront" parent="Sprite/Position2D" index="2"]
 
@@ -27,5 +66,10 @@ texture = ExtResource( 5 )
 [node name="DeathBack" parent="Sprite/Position2D" index="3"]
 
 texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" parent="Sprite" index="1"]
+
+anims/take_damage_back = SubResource( 2 )
+anims/take_damage_front = SubResource( 1 )
 
 
