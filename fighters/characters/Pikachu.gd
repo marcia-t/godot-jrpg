@@ -16,7 +16,7 @@ func show_anim():
 	else:
 		$Sprite/AnimatedBack.show()
 
-		$Sprite/AnimationPlayer.play("pikachu_take_damage_back")
+		$Sprite/AnimationPlayer.play("pikachu_take_db")
 		pass
 
 
